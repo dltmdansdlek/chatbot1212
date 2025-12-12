@@ -173,24 +173,22 @@ else:
             with st.chat_message("assistant"):
                 response = st.write_stream(stream)
             st.session_state.messages.append({"role": "assistant", "content": response})
-                except Exception as e:
-                    st.error(f"오류 발생: {str(e)}")
-    
-            # Add reset button
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                if st.button("🔄 대화 초기화", key="reset_button"):
-                    st.session_state.messages = []
-                    st.rerun()
-    
-            with col2:
-                if st.button("📋 사용 팁", key="tips_button"):
-                    st.info("""
-                    **게임 진행 팁:**
-                    - '다음 문제'라고 입력하면 새로운 문제를 받을 수 있습니다.
-                    - '처음부터 시작'이라고 입력하면 새로운 게임을 시작합니다.
-                    - '설명해줘'라고 입력하면 개념에 대한 상세 설명을 받을 수 있습니다.
-                    - 사이드바에서 난이도나 주제를 변경한 후 대화를 계속할 수 있습니다.
-                    """)
         except Exception as e:
             st.error(f"오류 발생: {str(e)}")
+    
+    # Add reset button and tips
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("🔄 대화 초기화", key="reset_button"):
+            st.session_state.messages = []
+            st.rerun()
+    
+    with col2:
+        if st.button("📋 사용 팁", key="tips_button"):
+            st.info("""
+            **게임 진행 팁:**
+            - '다음 문제'라고 입력하면 새로운 문제를 받을 수 있습니다.
+            - '처음부터 시작'이라고 입력하면 새로운 게임을 시작합니다.
+            - '설명해줘'라고 입력하면 개념에 대한 상세 설명을 받을 수 있습니다.
+            - 사이드바에서 난이도나 주제를 변경한 후 대화를 계속할 수 있습니다.
+            """)
